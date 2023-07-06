@@ -1,3 +1,7 @@
+const authRouter = require('./auth');
+const bookRouter = require('./book');
+const libraryRouter = require('./library');
 const userRouter = require('./user');
 
-module.exports = { userRouter };
+
+module.exports = { authRouter, bookRouter, libraryRouter, userRouter };

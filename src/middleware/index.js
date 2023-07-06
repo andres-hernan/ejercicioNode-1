@@ -1,3 +1,4 @@
-const logging = require('./logging');
+const loggingMdw = require('./logging');
+const authMdw = require('./auth-mdw')
 
-module.exports = { logging };
+module.exports = { loggingMdw, authMdw };

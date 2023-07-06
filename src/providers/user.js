@@ -10,6 +10,9 @@ const createUser = async (user) => {
     }
 };
 
+/*
+getUserByCriteria con options video 4 1:44:48
+*/
 const getUser = async (userId) => {
     try {
         const user = await User.findByPk(userId);
