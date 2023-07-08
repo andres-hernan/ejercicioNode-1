@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db-config');
 
+
 //modelo de entidad - datos que va a tener el esquema
 const Book = sequelize.define('Books', {
     id: {
@@ -31,6 +32,9 @@ const Book = sequelize.define('Books', {
     }
 });
 
+module.exports = Book;
+
+
 
 /*
 Ver asociaciones video 4 1:20:00 a 1:30:00
@@ -43,5 +47,3 @@ HasMany
 BelongsToMany
 
 */ 
-
-module.exports = Book;

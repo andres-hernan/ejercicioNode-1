@@ -15,7 +15,7 @@ getUserByCriteria con options video 4 1:44:48
 */
 const getLibrary = async (libraryId) => {
     try {
-        const library = await Library.findByPk(libraryId);
+        const library = await Library.findByPk(libraryId, { include: { all: true }});
         return library;
     } catch (err) {
         console.error('Error when fetching library', err);

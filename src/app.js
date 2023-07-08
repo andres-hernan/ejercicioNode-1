@@ -1,8 +1,7 @@
 const express = require('express');
 const PORT = 8080;
 const bodyParser = require('body-parser');
-const { logging } = require('./middleware');
-const { userRouter, authRouter, libraryRouter } = require('./routes');
+const { authRouter, bookRouter, libraryRouter, userRouter } = require('./routes');
 const { initializeDB } = require('./config/db-config');
 const { userModel } = require('./models');
 
@@ -11,11 +10,10 @@ const app = express();
 
 //uso de middleware
 app.use(bodyParser.json());
-app.use(logging);
 
 //rutas para acceder a los recursos
-app.use('/book', bookRouter);
 app.use('/login', authRouter);
+app.use('/book', bookRouter);
 app.use('/library', libraryRouter);
 app.use('/user', userRouter);
 

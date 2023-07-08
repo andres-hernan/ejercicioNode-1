@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { bookController } = require('../controllers');
-const { auth} = require('../middleware');
+const { authMdw, userIsAdminMdw } = require('../middleware/auth-mdw');
 
 //método post para dar de alta usuarios
-router.post('/', bookController.createBook); 
-router.get('/:userId', bookController.getBook);
+router.post('/', userIsAdminMdw, bookController.createBook); 
+router.get('/:userId', authMdw, bookController.getBook);
 
 
 

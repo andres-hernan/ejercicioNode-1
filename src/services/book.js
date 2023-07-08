@@ -5,7 +5,11 @@ const createBook = async (book) => {
 };
 
 const getBook = async (bookId) => {
-    return await bookProvider.getBook(bookId);
-}
+    const book = await bookProvider.getBook(bookId);
+    // if(book){
+    //     console.log(book.title);
+    // }
+    return book;
+};
 
 module.exports = { createBook, getBook };

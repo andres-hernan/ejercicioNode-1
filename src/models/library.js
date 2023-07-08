@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db-config');
+const Book = require('./book');
 
-//modelo de entidad - datos que va a tener la tabla library
+//modelo de entidad - datos de tabla library
 const Library = sequelize.define('Libraries', {
     id: {
         type: DataTypes.INTEGER,
@@ -19,12 +20,17 @@ const Library = sequelize.define('Libraries', {
     telephone: {
         type: DataTypes.STRING,
         allowNull: false,        
-    },
+    }
+    
+}, {
     paranoid: true,
+    timestamps: true 
 });
 
 Library.hasMany(Book);
 Book.belongsTo(Library);
+
+module.exports = Library;
 
 /*
 Ver asociaciones video 4 1:20:00 a 1:30:00
@@ -37,5 +43,3 @@ HasMany
 BelongsToMany
 
 */ 
-
-module.exports = Library;

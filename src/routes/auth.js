@@ -3,8 +3,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
 
-const { SERVER_SECRET } = require('../middleware'); 
-
+const { authMdw, SERVER_SECRET } = require('../middleware/auth-mdw'); 
+//seguir video 5 1:01:14
 router.post('/', (req, res) => {
     const { user, pass } = req.body;
     if(user === 'admin' && pass === 'admin'){

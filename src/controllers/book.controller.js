@@ -2,6 +2,7 @@ const { bookService } = require('../services');
 
 const createBook = async (req, res) => {
     try {
+        console.log(`Book created by user: ${req.user}`);
         const newBook = await bookService.createBook(req.body);
         res.json(newBook);        
     } catch (err) {

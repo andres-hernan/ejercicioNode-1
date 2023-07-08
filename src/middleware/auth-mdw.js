@@ -18,8 +18,24 @@ passport.use(
     )
 );
 
-const authMdw = passport.authenticate('jwt', {session: false});
+const authMdw = passport.authenticate('jwt', { session: false });
 
-module.exports = { authMdw, SERVER_SECRET };
+const userIsAdminMdw = (req, res, next) => {
+    return passport.authenticate('jwt', { session: false }, (err, user, info) => {
+        if(err){
+            console.err(err);
+            return next(err);
+        }
+
+        if(user.role === 'Admin'){
+            req.user = user;
+            return next();
+        }
+
+        res.status(401).json({error: 'User is not Admin'});
+    })(req, res, next);
+};
+
+module.exports = { authMdw, SERVER_SECRET, userIsAdminMdw };
 
 //se me clavó en validación user-pass, video 5 00:50:19

@@ -1,5 +1,5 @@
 const Book = require('./book');
-const Library = require('./library')
+const Library = require('./library');
 const User = require('./user');
 
 
