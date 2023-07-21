@@ -1,4 +1,4 @@
-const { User, Book } = require('../models');
+const { Book } = require('../models');
 
 const createBook = async (book) => {
     try {
@@ -10,9 +10,6 @@ const createBook = async (book) => {
     }
 };
 
-/*
-getUserByCriteria con options video 4 1:44:48
-*/
 const getBook = async (bookId) => {
     try {
         const book = await Book.findByPk(bookId);
@@ -23,6 +20,44 @@ const getBook = async (bookId) => {
     }
 };
 
+const getAllBooks = async () => {
+    try {
+        const books = await Book.findAll();
+        return books;
+    } catch (err) {
+        console.error('Error when fetching all books', err);
+        throw err;
+    }
+};
+
+const deleteBook = async (bookId) => {
+    try {
+        const book = await Book.findByPk(bookId);
+        if (book) {
+            await book.destroy();
+        } else {
+            throw new Error ('Book not found');
+        }
+    } catch (err) {
+        console.error('Error when deleting book', err);
+        throw err;
+    }
+};
+
+const updateBook = async (bookId, updatedBook) => {
+    try {
+        const book = await Book.findByPk(bookId);
+        if(book) {
+            await book.update(updatedBook);
+            return book;
+        } else {
+            throw new Error ('Book not found');
+        }
+    } catch (err) {
+        console.error('Error when updating book', err);
+        throw err;
+    }
+};
 
 
-module.exports = { createBook, getBook }; 
+module.exports = { createBook, deleteBook, getBook, getAllBooks, updateBook }; 

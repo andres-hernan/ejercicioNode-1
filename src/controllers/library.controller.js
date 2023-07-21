@@ -19,9 +19,37 @@ const getLibrary = async (req, res) => {
         }
 
     } catch (err) {
-        res.status(500).json({ action: "getLibrary", error: err.message });
+        res.status(500).json({ action: 'getLibrary', error: err.message });
     }
     
 };
 
-module.exports = { createLibrary, getLibrary };
+const getAllLibraries = async (req, res) => {
+    try {
+        const libraries = await libraryService.getAllLibraries();
+        res.json(libraries);
+    } catch (err) {
+        res.status(500).json({ action: 'getAllLibraries', error: err.message});
+    }
+};
+
+const deleteLibrary = async (req, res) => {
+    try {
+        const library = await libraryService.deleteLibrary(req.params.libraryId);
+        res.json({ message: 'Library deleted successfully'});
+    } catch (err) {
+        res.status(500).json({ action: 'deleteLibrary', error: err.message});
+    }
+};
+
+const updateLibrary = async (req, res) => {
+    try {
+        const updatedLibrary = await libraryService.updateLibrary(req.params.libraryId, req.body);
+        res.json(updatedLibrary);
+    } catch (err) {
+        res.status(500).json({ action: 'updateLibrary', error: err.message});
+    }
+}
+
+
+module.exports = { createLibrary, deleteLibrary, getLibrary, getAllLibraries, updateLibrary };

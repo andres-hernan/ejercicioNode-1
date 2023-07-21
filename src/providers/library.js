@@ -10,9 +10,6 @@ const createLibrary = async (library) => {
     }
 };
 
-/*
-getUserByCriteria con options video 4 1:44:48
-*/
 const getLibrary = async (libraryId) => {
     try {
         const library = await Library.findByPk(libraryId, { include: { all: true }});
@@ -24,5 +21,45 @@ const getLibrary = async (libraryId) => {
 };
 
 
+const getAllLibraries = async () => {
+    try {
+        const library = await Library.findAll();
+        return library;
+    } catch (err) {
+        console.error('Error when fetching all libraries', err);
+        throw err;
+    }
+};
 
-module.exports = { createLibrary, getLibrary }; 
+const deleteLibrary = async (libraryId) => {
+    try {
+        const library = await Library.findByPk(libraryId);
+        if (library) {
+            await library.destroy();
+        } else {
+            throw new Error ('Library not found');
+        }
+    } catch (err) {
+        console.error('Error when deleting library', err);
+        throw err;
+    }
+};
+
+const updateLibrary = async (libraryId, updatedLibrary) => {
+    try {
+        const library = await Library.findByPk(libraryId);
+        if(library) {
+            await library.update(updatedLibrary);
+            return library;
+        } else {
+            throw new Error ('Library not found');
+        }
+    } catch (err) {
+        console.error('Error when updating library', err);
+        throw err;
+    }
+};
+
+
+
+module.exports = { createLibrary, deleteLibrary, getLibrary, getAllLibraries, updateLibrary }; 

@@ -4,8 +4,26 @@ const createUser = async (user) => {
     return await userProvider.createUser(user);
 };
 
-const getUser = async (userId) => {
-    return await userProvider.getUser(userId);
-}
+const deleteUser = async (userId) => {
+    return await userProvider.deleteUser(userId);
+};
 
-module.exports = { createUser, getUser };
+const getUser = async (userId) => {
+    const user = await userProvider.getUser(userId);
+    return user;
+};
+
+const getAllUsers = async() => {
+    return await userProvider.getAllUsers();
+};
+
+const updateUser = async(userId, updatedUser) => {
+    return await userProvider.updateUser(userId, updatedUser);
+};
+
+const validateUser = async (user, pass) => {
+    const userFound = await userProvider.validateUser({ user, pass });
+    return userFound;
+};
+
+module.exports = { createUser, deleteUser, getUser, getAllUsers , updateUser, validateUser};

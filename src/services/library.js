@@ -8,4 +8,16 @@ const getLibrary = async (libraryId) => {
     return await libraryProvider.getLibrary(libraryId);
 }
 
-module.exports = { createLibrary, getLibrary };
+const getAllLibraries = async () => {
+    return await libraryProvider.getAllLibraries();
+};
+
+const deleteLibrary = async (libraryId) => {
+    return await libraryProvider.deleteLibrary(libraryId);
+}
+
+const updateLibrary = async (libraryId, updatedLibrary) => {
+    return await libraryProvider.updateLibrary(libraryId, updatedLibrary);
+}
+
+module.exports = { createLibrary, deleteLibrary, getLibrary, getAllLibraries, updateLibrary };

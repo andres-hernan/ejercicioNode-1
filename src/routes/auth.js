@@ -3,15 +3,20 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
 
-const { authMdw, SERVER_SECRET } = require('../middleware/auth-mdw'); 
-//seguir video 5 1:01:14
-router.post('/', (req, res) => {
+const { SERVER_SECRET } = require('../middleware/auth-mdw');
+
+router.post('/', async (req, res) => {
     const { user, pass } = req.body;
-    if(user === 'admin' && pass === 'admin'){
-        const token = jwt.sign({ user, role: 'Admin'}, SERVER_SECRET);
+    if (user === 'admin' && pass === 'admin') {
+        const token = jwt.sign({ user, role: 'Admin' }, SERVER_SECRET);
         res.json({ token });
     } else {
-        res.status(401).json({ error: 'Invalid user'});
+        const userFound = await userService.validateUser(user, pass);
+        if (userFound) {
+            const token = jwt.sign({ user, role: 'User' }, SERVER_SECRET);
+            return res.json({ token });
+        }
+        res.status(401).json({ error: 'Invalid user' });
     }
 });
 
