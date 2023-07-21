@@ -14,7 +14,7 @@ const initializeDB = async () => {
         //va a sincronizar los modelos definidos con la base de datos
         //si tiene que cambiar algo -> alter table
         //force: true, hace un drop table con cada inicialización
-        await sequelize.sync({ force: true });
+        await sequelize.sync({ force: false });
     } catch (error) {
         console.error('Error when initilizing database', error);
     }
