@@ -9,6 +9,15 @@ const createLibrary = async (req, res) => {
     }
 };
 
+const deleteLibrary = async (req, res) => {
+    try {
+        const library = await libraryService.deleteLibrary(req.params.libraryId);
+        res.json({ message: 'Library deleted successfully'});
+    } catch (err) {
+        res.status(500).json({ action: 'deleteLibrary', error: err.message});
+    }
+};
+
 const getLibrary = async (req, res) => {
     try {
         const library = await libraryService.getLibrary(req.params.libraryId);
@@ -30,15 +39,6 @@ const getAllLibraries = async (req, res) => {
         res.json(libraries);
     } catch (err) {
         res.status(500).json({ action: 'getAllLibraries', error: err.message});
-    }
-};
-
-const deleteLibrary = async (req, res) => {
-    try {
-        const library = await libraryService.deleteLibrary(req.params.libraryId);
-        res.json({ message: 'Library deleted successfully'});
-    } catch (err) {
-        res.status(500).json({ action: 'deleteLibrary', error: err.message});
     }
 };
 

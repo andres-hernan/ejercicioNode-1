@@ -34,7 +34,7 @@ const deleteBook = async (bookId) => {
     try {
         const book = await Book.findByPk(bookId);
         if (book) {
-            await book.destroy();
+            await book.destroy(bookId);
         } else {
             throw new Error ('Book not found');
         }
