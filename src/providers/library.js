@@ -35,7 +35,7 @@ const deleteLibrary = async (libraryId) => {
     try {
         const library = await Library.findByPk(libraryId);
         if (library) {
-            await library.destroy();
+            await library.destroy(libraryId);
         } else {
             throw new Error ('Library not found');
         }

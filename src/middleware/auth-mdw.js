@@ -38,4 +38,3 @@ const userIsAdminMdw = (req, res, next) => {
 
 module.exports = { authMdw, SERVER_SECRET, userIsAdminMdw };
 
-//se me clavó en validación user-pass, video 5 00:50:19
