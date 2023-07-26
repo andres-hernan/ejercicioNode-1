@@ -26,35 +26,59 @@ const Book = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    library: {
+    FKuser: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      references: {
+        model: "users",
+        key: "id",
+      },
+    },
+    FKlibrary: {
       type: DataTypes.STRING,
       allowNull: true,
       references: {
         model: "Libraries",
         key: "id",
       },
+    },
       onDelete: "CASCADE",
       onUpdate: "CASCADE",
-    },
-  },
-  {
+  });
+ /* {
     sequelize,
     paranoid: true,
     timestamps: true,
-    deletedAt: "destroyTime",
-  }
-);
+    deletedAt: "destroyTime"
+  }*/
+  
+ 
+
+
+//Book.belongs(User, {foreignKey: 'book', sourceKey: 'id'});
+//Book.belongsTo(Library, {foreignKey: 'book', targetKey: 'id'});
+
+User.hasMany(Book);
+Book.belongsTo(User);
+
+Library.hasMany(Book);
+Book.belongsTo(Library);
+
+/*
+User.hasMany(Book, {
+  foreignKey: 'userId', // Nombre de la clave foránea en la tabla Book
+});
+Book.belongsTo(User, {
+  foreignKey: 'userId', // Nombre de la clave foránea en la tabla Book
+});
+
+Library.hasMany(Book, {
+  foreignKey: 'libraryId', // Nombre de la clave foránea en la tabla Book
+});
+Book.belongsTo(Library, {
+  foreignKey: 'libraryId', // Nombre de la clave foránea en la tabla Book
+});
+*/
 
 module.exports = Book;
 
-/*
-Ver asociaciones video 4 1:20:00 a 1:30:00
-
-Provider->Crear ticket 1:35:50|59
-Associations:
-HasOne
-BelongsTo
-HasMany
-BelongsToMany
-
-*/

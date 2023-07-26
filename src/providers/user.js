@@ -4,6 +4,7 @@ const { User } = require('../models');
 const createUser = async (user) => {
     try {
         const newUser = await User.create(user);
+        console.log('PROVIDERS', newUser);
         return newUser;
     } catch (err) {
         console.error('Error when creating user', err);

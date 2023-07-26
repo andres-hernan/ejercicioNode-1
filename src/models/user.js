@@ -40,16 +40,7 @@ const User = sequelize.define(
   }
 );
 
-/*
-Ver asociaciones video 4 1:20:00 a 1:30:00
-
-Provider->Crear ticket 1:35:50|59
-Associations:
-HasOne
-BelongsTo
-HasMany
-BelongsToMany
-
-*/
+//User.hasMany(Book, {foreignKey: 'book', sourceKey: 'id'});
+//Book.belongsTo(Library, {foreignKey: 'book', targetKey: 'id'});
 
 module.exports = User;

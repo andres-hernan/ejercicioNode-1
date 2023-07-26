@@ -32,19 +32,9 @@ const Library = sequelize.define(
   }
 );
 
-Library.hasMany(Book, {foreignKey: 'library', sourceKey: 'id'});
-Book.belongsTo(Library, {foreignKey: 'library', targetKey: 'id'});
+//Library.hasMany(Book, {foreignKey: 'library', sourceKey: 'id'});
+//Book.belongsTo(Library, {foreignKey: 'library', targetKey: 'id'});
 
 module.exports = Library;
 
-/*
-Ver asociaciones video 4 1:20:00 a 1:30:00
 
-Provider->Crear ticket 1:35:50|59
-Associations:
-HasOne
-BelongsTo
-HasMany
-BelongsToMany
-
-*/

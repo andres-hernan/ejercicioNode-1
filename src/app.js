@@ -9,6 +9,7 @@ const app = express();
 
 //uso de middleware
 app.use(express.json());
+app.use(initializeDB);
 
 //rutas para acceder a los recursos
 app.use('/login', authRouter);

@@ -1,6 +1,7 @@
 const { userProvider } = require('../providers');
 
 const createUser = async (user) => {
+    console.log('SERVICES', user);
     return await userProvider.createUser(user);
 };
 

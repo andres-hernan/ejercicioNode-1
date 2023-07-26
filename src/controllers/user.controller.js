@@ -3,6 +3,7 @@ const { userService, bookService } = require('../services');
 const createUser = async (req, res) => {
     try {
         const newUser = await userService.createUser(req.body);
+        console.log('CONTROLLER',newUser);
         res.json(newUser);        
     } catch (err) {
         res.status(500).json({ action: "createUser", error: err.message });
